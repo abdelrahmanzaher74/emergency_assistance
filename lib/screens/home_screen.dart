@@ -40,50 +40,72 @@ class HomeScreen extends StatelessWidget {
       ),
     ];
 
+    final theme = Theme.of(context);
+
     return Scaffold(
+      backgroundColor: Colors.grey[50], // Light neutral background to make cards pop
       appBar: AppBar(
-        title: const Text(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        title: Text(
           "Emergency Assistance",
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: theme.textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+          ),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info_outline, color: Colors.black54),
+            onPressed: () {}, // Optional placeholder for app info/guidelines
+          ),
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(18),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Need Help?",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              "Choose the service you need.",
-              style: TextStyle(
-                color: Colors.grey.shade700,
-              ),
-            ),
-            const SizedBox(height: 25),
-            Expanded(
-              child: GridView.builder(
-                itemCount: services.length,
-                gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 18,
-                  mainAxisSpacing: 18,
-                  childAspectRatio: .9,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 10),
+              // Prominent, clear header section
+              Text(
+                "Need Help?",
+                style: theme.textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.w900,                color: Colors.black,
+                  letterSpacing: -0.5,
                 ),
-                itemBuilder: (context, index) {
-                  return EmergencyCard(service: services[index]);
-                },
               ),
-            ),
-          ],
+              const SizedBox(height: 6),
+              Text(
+                "Select a service below to get immediate assistance.",
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: Colors.grey[600],
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 30),
+
+              // Services Grid Layout
+              Expanded(
+                child: GridView.builder(
+                  physics: const BouncingScrollPhysics(), // Premium native scroll feel
+                  itemCount: services.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                    childAspectRatio: 0.85, // Optimized ratio for text and icons
+                  ),
+                  itemBuilder: (context, index) {
+                    return EmergencyCard(service: services[index]);
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

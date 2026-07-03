@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
 import '../models/emergency_service.dart';
 import '../widgets/emergency_card.dart';
-
+import 'articles_screen.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -87,7 +87,31 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const ArticlesScreen(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.menu_book),
+                  label: const Text("First Aid Steps"),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                  ),
+                ),
+              ),
 
+              const SizedBox(height: 20),
               // Services Grid Layout
               Expanded(
                 child: GridView.builder(

@@ -38,6 +38,34 @@ class HomeScreen extends StatelessWidget {
         icon: Icons.car_crash,
         color: AppColors.road,
       ),
+      EmergencyService(
+        title: "Police",
+        subtitle: "Emergency Police",
+        number: "122",
+        icon: Icons.local_police,
+        color: AppColors.police,
+      ),
+      EmergencyService(
+        title: "Electricity",
+        subtitle: "Electric Emergency",
+        number: "121",
+        icon: Icons.electric_bolt,
+        color: Colors.amber,
+      ),
+      EmergencyService(
+        title: "Gas",
+        subtitle: "Gas Emergency",
+        number: "129",
+        icon: Icons.local_gas_station,
+        color: Colors.orange,
+      ),
+      EmergencyService(
+        title: "Tourist Police",
+        subtitle: "Tourist Assistance",
+        number: "126",
+        icon: Icons.travel_explore,
+        color: Colors.teal,
+      ),
     ];
 
     final theme = Theme.of(context);
